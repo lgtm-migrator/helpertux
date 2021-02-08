@@ -1,0 +1,41 @@
+{
+  "name": "helpertux",
+  "version": "1.0.0-Beta",
+  "main": "index.js",
+  "author": "SoulHarsh007",
+  "license": "GPL-3.0-or-later",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node --enable-one-shot-optimization --max-old-space-size=400 --expose_gc --gc-interval=100 --clear-free-memory TuxManager.js",
+    "lint": "eslint ./*.js ./commands/*.js ./utils/*.js ./events/*.js ./structures/*/*.js"
+  },
+  "engines": {
+    "node": "15.x.x",
+    "yarn": "1.x.x"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn run lint"
+    }
+  },
+  "devDependencies": {
+    "eslint": "7.19.0",
+    "eslint-config-google": "0.14.0",
+    "eslint-config-prettier": "7.2.0",
+    "eslint-plugin-jsdoc": "31.6.1",
+    "eslint-plugin-prettier": "3.3.1",
+    "husky": "5.0.9",
+    "prettier": "2.2.1"
+  },
+  "dependencies": {
+    "@nia3208/centra": "1.0.9-1",
+    "@nia3208/pretty-ms": "7.0.0",
+    "bufferutil": "4.0.3",
+    "discord.js": "12.5.1",
+    "erlpack": "discord/erlpack",
+    "pretty-bytes": "5.5.0",
+    "utf-8-validate": "5.0.4",
+    "zlib-sync": "0.1.7"
+  }
+}

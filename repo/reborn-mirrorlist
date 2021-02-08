@@ -1,0 +1,47 @@
+# OSDN RebornOS Repository 1
+Server = https://mirrors.dotsrc.org/osdn/storage/g/r/re/rebornos/repo/RebornOS/
+
+# OSDN RebornOS Repository 2
+Server = https://mirrors.tuna.tsinghua.edu.cn/osdn/storage/g/r/re/rebornos/repo/RebornOS/
+
+# OSDN RebornOS Repository 3
+Server = https://mirrors.xtom.com.hk/osdn//storage/g/r/re/rebornos/repo/RebornOS/
+
+# OSDN RebornOS Repository 4
+Server = https://mirrors.bfsu.edu.cn/osdn/storage/g/r/re/rebornos/repo/RebornOS/
+
+# OSDN RebornOS Repository 5
+Server = https://mirror.liquidtelecom.com/osdn/storage/g/r/re/rebornos/repo/RebornOS/
+
+# OSDN RebornOS Repository 6
+Server = https://ftp.jaist.ac.jp/pub/sourceforge.jp/storage/g/r/re/rebornos/repo/RebornOS/
+
+# OSDN RebornOS Repository 7
+Server = http://ftp.halifax.rwth-aachen.de/osdn/storage/g/r/re/rebornos/repo/RebornOS/
+
+# OSDN RebornOS Repository 8
+Server = http://mirroronet.pl/pub/mirrors/sourceforge.jp/storage/g/r/re/rebornos/repo/RebornOS/
+
+# OSDN RebornOS Repository 9
+Server = https://ftp.acc.umu.se/mirror/osdn.net/storage/g/r/re/rebornos/repo/RebornOS/
+
+# OSDN RebornOS Repository 10
+Server = http://osdn.mirror.constant.com/storage/g/r/re/rebornos/repo/RebornOS/
+
+# OSDN RebornOS Repository 11
+Server = http://mirror.math.princeton.edu/pub/osdn/storage/g/r/re/rebornos/repo/RebornOS/
+
+# OSDN RebornOS Repository 12
+Server = https://plug-mirror.rcac.purdue.edu/osdn/storage/g/r/re/rebornos/repo/RebornOS/
+
+# OSDN RebornOS Repository 13
+Server = https://mirrors.gigenet.com/OSDN/storage/g/r/re/rebornos/repo/RebornOS/
+
+# OSDN RebornOS Repository 14
+Server = https://openbsd.c3sl.ufpr.br/osdn/storage/g/r/re/rebornos/repo/RebornOS/
+
+# US Server
+#Server = https://repo.rebornos.org/RebornOS/
+
+# European Server
+#Server = http://repo-de.rebornos.org/Reborn-OS/
