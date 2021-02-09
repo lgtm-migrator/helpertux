@@ -39,9 +39,13 @@ export default class Eval extends BaseCommand {
       msg.author.id !== process.env.OWNERID &&
       msg.author.id !== process.env.COOWNERID
     )
-      return msg.reply(
-        'Username is not in the sudoers file. This incident will be reported.'
-      );
+      return msg.reply({
+        embed: new MessageEmbed()
+          .setTitle(
+            'Username is not in the sudoers file. This incident will be reported.'
+          )
+          .setColor('RED'),
+      });
     const Args = args
       .filter(x => x.startsWith('--'))
       .map(x => x.replace('--', '').toLowerCase());

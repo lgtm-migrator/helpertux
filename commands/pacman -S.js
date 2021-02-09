@@ -33,7 +33,12 @@ export default class SearchOfficial extends BaseCommand {
    * @returns {Promise<import('discord.js').Message>} - returns a promise which resolves to discord.js message
    */
   async execute(msg, args) {
-    if (!args.length) return msg.reply('You must provide a package name!');
+    if (!args.length)
+      return msg.reply({
+        embed: new MessageEmbed()
+          .setTitle('You must provide a package name!')
+          .setColor('RED'),
+      });
     const {results} = await this.getPinfo(args.join(' '));
     this.tux.logger.log(results, 'Success', 'ArchLinux-Repo-Results');
     if (!results.length)

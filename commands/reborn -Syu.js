@@ -32,7 +32,8 @@ export default class RebornUpdater extends BaseCommand {
     const msgOld = await msg.channel.send({
       embed: new MessageEmbed()
         .setTitle('Syncing Reborn-OS Repo...')
-        .setDescription(':: Synchronizing package databases...'),
+        .setDescription(':: Synchronizing package databases...')
+        .setColor('BLUE'),
     });
     await fetchRepo();
     msgOld.edit({
@@ -40,7 +41,8 @@ export default class RebornUpdater extends BaseCommand {
         .setTitle('Syncing Reborn-OS Repo...')
         .setDescription(
           ':: Synchronizing package databases...\n:: Starting full system upgrade...'
-        ),
+        )
+        .setColor('BLUE'),
     });
     cacheRepo(this.tux);
     msgOld.edit({
@@ -48,7 +50,8 @@ export default class RebornUpdater extends BaseCommand {
         .setTitle('Syncing Reborn-OS Repo...')
         .setDescription(
           ':: Synchronizing package databases...\n:: Starting full system upgrade...\n:: Processing package changes...\n:: Repo updated...'
-        ),
+        )
+        .setColor('BLUE'),
     });
   }
 }

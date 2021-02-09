@@ -5,19 +5,20 @@ import {MessageEmbed} from 'discord.js';
  * @author SoulHarsh007 <harshtheking@hotmail.com>
  * @copyright SoulHarsh007 2021
  * @since v1.0.0-Beta
- * @class Ping
+ * @class Help
  * @augments BaseCommand
  */
-export default class Ping extends BaseCommand {
+export default class Help extends BaseCommand {
   /**
    * @class
    * @param {import('../structures/core/tux.js').HelperTux}  tux - tux, extended discord.js client
    */
   constructor(tux) {
     super(tux, {
-      name: 'help -me',
+      name: 'tux -h',
       hidden: false,
       usage: 'the help command',
+      aliases: ['tux --help', 'tux help'],
       example: prefix => `${prefix}${this.name}`,
     });
   }

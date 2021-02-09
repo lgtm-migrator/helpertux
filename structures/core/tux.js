@@ -18,15 +18,15 @@ export class HelperTux extends Client {
     super({
       shards: 'auto',
       messageCacheMaxSize: 5,
-      messageCacheLifetime: 7,
-      messageSweepInterval: 15,
-      messageEditHistoryMaxSize: 0,
+      messageCacheLifetime: 15,
+      messageSweepInterval: 25,
+      messageEditHistoryMaxSize: 1,
       disableMentions: 'everyone',
       ws: {intents: ['GUILDS', 'GUILD_MESSAGES'], compress: true},
       presence: {
         activity: {
-          name: 'HelperTux is here to save the day!',
-          type: 'STREAMING',
+          name: 'sudo tux -h',
+          type: 'PLAYING',
         },
       },
     });

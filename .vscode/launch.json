@@ -8,7 +8,7 @@
       "skipFiles": ["<node_internals>/**"],
       "runtimeArgs": [
         "--max-old-space-size=400",
-        "--expose_gc",
+        "--expose-gc",
         "--gc-interval=100",
       ],
       "program": "${workspaceFolder}/TuxManager.js",

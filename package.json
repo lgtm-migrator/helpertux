@@ -6,7 +6,7 @@
   "license": "BSD-3-Clause",
   "type": "module",
   "scripts": {
-    "start": "node --enable-one-shot-optimization --max-old-space-size=400 --expose_gc --gc-interval=100 --clear-free-memory TuxManager.js",
+    "start": "node --enable-one-shot-optimization --max-old-space-size=400 --expose-gc --gc-interval=100 --clear-free-memory TuxManager.js",
     "lint": "eslint ./*.js ./commands/*.js ./utils/*.js ./events/*.js ./structures/*/*.js"
   },
   "engines": {
@@ -31,6 +31,7 @@
     "@nia3208/centra": "1.0.9-1",
     "@nia3208/pretty-ms": "7.0.0",
     "bufferutil": "4.0.3",
+    "cheerio": "1.0.0-rc.5",
     "discord.js": "12.5.1",
     "erlpack": "discord/erlpack",
     "pretty-bytes": "5.5.0",

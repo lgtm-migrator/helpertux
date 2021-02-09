@@ -6,55 +6,41 @@ import {MessageEmbed} from 'discord.js';
  * @author SoulHarsh007 <harshtheking@hotmail.com>
  * @copyright SoulHarsh007 2021
  * @since v1.0.0-Beta
- * @class Message
+ * @class MessageUpdate
  * @augments BaseEvent
  */
-export default class Message extends BaseEvent {
+export default class MessageUpdate extends BaseEvent {
   /**
    * @class
    * @param {import('../structures/core/tux.js').HelperTux}  tux - tux, extended discord.js client
    */
   constructor(tux) {
-    super(tux, 'message');
+    super(tux, 'messageUpdate');
   }
 
   /**
    * @function execute
    * @param {import('discord.js').Message} msg - the message object
+   * @param {import('discord.js').Message} newMsg - the message object
    * @returns {Promise<import('discord.js').Message> | void} - returns void or promise which resolves to discord.js message object
    */
-  execute(msg) {
+  execute(msg, newMsg) {
     if (
-      msg.content.match(/<@(!|)807946103768612864>/g) &&
-      msg.content.toLowerCase().includes('help') &&
-      !msg.author.bot &&
-      msg.guild
-    )
-      return this.tux.commands.get('tux -h').execute(msg, []);
-    else if (
-      msg.content.match(/<@(!|)807946103768612864>/g) &&
-      !msg.author.bot &&
-      msg.guild
-    )
-      msg.reply({
-        embed: new MessageEmbed()
-          .setTitle('My prefix is `sudo `!')
-          .setColor('BLUE'),
-      });
-    if (
-      !msg.content.toLowerCase().startsWith(this.tux.prefix) ||
-      msg.author.bot ||
-      !msg.guild
+      !newMsg.content.toLowerCase().startsWith(this.tux.prefix) ||
+      newMsg.author.bot ||
+      !newMsg.guild
     )
       return;
-    const args = msg.content.slice(this.tux.prefix.length).split(' ');
+    if (newMsg.mentions.has(this.tux.id) && newMsg.content.includes('help'))
+      return this.tux.commands.execute(newMsg, []);
+    const args = newMsg.content.slice(this.tux.prefix.length).split(' ');
     const command = `${args.shift().toLowerCase()} ${args.shift()}`;
     const cmd = this.tux.commands.get(command) || this.tux.aliases.get(command);
     if (cmd) {
-      if (cmd.cooldowns.has(msg.author.id)) {
-        const time = cmd.cooldowns.get(msg.author.id);
+      if (cmd.cooldowns.has(newMsg.author.id)) {
+        const time = cmd.cooldowns.get(newMsg.author.id);
         if (time - Date.now() > 0)
-          return msg.reply({
+          return newMsg.reply({
             embed: new MessageEmbed()
               .setTitle(
                 `Slow down a little! You can use this command after ${prettyMS(
@@ -64,19 +50,19 @@ export default class Message extends BaseEvent {
               )
               .setColor('RED'),
           });
-        cmd.cooldowns.delete(msg.author.id);
+        cmd.cooldowns.delete(newMsg.author.id);
       }
-      cmd.cooldowns.set(msg.author.id, Date.now() + cmd.cooldown);
+      cmd.cooldowns.set(newMsg.author.id, Date.now() + cmd.cooldown);
       try {
-        cmd.execute(msg, args);
+        cmd.execute(newMsg, args);
         this.tux.logger.log(
-          `${cmd.name} was executed in ${msg.guild.name} by ${msg.author.tag}`,
+          `${cmd.name} was executed in ${newMsg.guild.name} by ${newMsg.author.tag}`,
           'INFO',
-          'Message Execution'
+          'MessageUpdate Execution'
         );
       } catch (error) {
         this.tux.logger.log(error, 'Error', 'Failed to execute command');
-        msg.reply({
+        newMsg.reply({
           embed: new MessageEmbed()
             .setTitle(
               'Oh no! HelperTux ran into an error, this incident has been reported.'
