@@ -1,5 +1,5 @@
 import BaseEvent from '../structures/event/baseEvent.js';
-import {cacheRepo} from '../utils/repoSyncer.js';
+import {fetchRepo, cacheRepo} from '../utils/repoSyncer.js';
 
 /**
  * @author SoulHarsh007 <harshtheking@hotmail.com>
@@ -18,14 +18,16 @@ export default class Ready extends BaseEvent {
   }
 
   /**
+   * @async
    * @function execute
    */
-  execute() {
+  async execute() {
     this.tux.logger.log(
       `Connected as ${this.tux.user.tag}`,
       'Connected!',
       'Ready'
     );
+    await fetchRepo();
     cacheRepo(this.tux);
     this.tux.rebornRepo.delete('elementary-theme');
   }

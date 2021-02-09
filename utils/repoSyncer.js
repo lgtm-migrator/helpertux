@@ -13,9 +13,19 @@ import {writeFileSync, readdirSync, readFileSync} from 'fs';
 export async function fetchRepo() {
   const db = await centra(
     'https://repo.rebornos.org/RebornOS/Reborn-OS.db.tar.xz'
-  ).raw();
-  writeFileSync('./repo/db.tar.xz', db);
-  execSync('bsdtar -C ./repo/extracted/ -xvf ./repo/db.tar.xz');
+  )
+    .raw()
+    .catch(x => console.log(`Failed at downloading repo: ${x}`));
+  try {
+    writeFileSync('./repo/db.tar.xz', db);
+  } catch (error) {
+    console.log(`Failed at storing repo: ${error}`);
+  }
+  try {
+    execSync('tar -C ./repo/extracted/ -xvf ./repo/db.tar.xz');
+  } catch (error) {
+    console.log(`Failed at extracting repo: ${error}`);
+  }
 }
 
 /**
