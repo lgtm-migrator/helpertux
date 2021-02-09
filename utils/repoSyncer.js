@@ -1,6 +1,12 @@
 import {centra} from '@nia3208/centra';
 import {execSync} from 'child_process';
-import {writeFileSync, readdirSync, readFileSync} from 'fs';
+import {
+  writeFileSync,
+  readdirSync,
+  readFileSync,
+  existsSync,
+  mkdirSync,
+} from 'fs';
 
 /**
  * @author SoulHarsh007 <harshtheking@hotmail.com>
@@ -21,6 +27,7 @@ export async function fetchRepo() {
   } catch (error) {
     console.log(`Failed at storing repo: ${error}`);
   }
+  if (!existsSync('./repo/extracted')) mkdirSync('./repo/extracted');
   try {
     execSync('tar -C ./repo/extracted/ -xvf ./repo/db.tar.xz');
   } catch (error) {
