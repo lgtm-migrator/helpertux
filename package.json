@@ -5,6 +5,10 @@
   "author": "SoulHarsh007",
   "license": "BSD-3-Clause",
   "type": "module",
+  "cacheDirectories": [
+    ".yarn",
+    "node_modules"
+  ],
   "scripts": {
     "start": "node --enable-one-shot-optimization --max-old-space-size=400 --expose-gc --gc-interval=100 --clear-free-memory TuxManager.js",
     "lint": "eslint ./*.js ./commands/*.js ./utils/*.js ./events/*.js ./structures/*/*.js"
