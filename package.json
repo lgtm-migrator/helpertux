@@ -6,7 +6,7 @@
   "license": "BSD-3-Clause",
   "type": "module",
   "cacheDirectories": [
-    ".yarn",
+    ".yarn/cache",
     "node_modules"
   ],
   "scripts": {
