@@ -9,4 +9,5 @@ repo/db.tar.xz
 !.yarn/sdks
 !.yarn/versions
 .pnp.*
+.cache
 
