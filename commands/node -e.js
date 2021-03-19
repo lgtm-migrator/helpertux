@@ -38,7 +38,7 @@ export default class Eval extends BaseCommand {
     if (
       msg.author.id !== process.env.OWNERID &&
       msg.author.id !== process.env.COOWNERID
-    )
+    ) {
       return msg.reply({
         embed: new MessageEmbed()
           .setTitle(
@@ -46,6 +46,7 @@ export default class Eval extends BaseCommand {
           )
           .setColor('RED'),
       });
+    }
     const Args = args
       .filter(x => x.startsWith('--'))
       .map(x => x.replace('--', '').toLowerCase());
@@ -72,30 +73,39 @@ export default class Eval extends BaseCommand {
         asyncTime = stopwatch.toString();
       }
     } catch (e) {
-      if (!syncTime) syncTime = stopwatch.toString();
-      if (!type) type = classId(e);
-      if (thenable && !asyncTime) asyncTime = stopwatch.toString();
-      if (e && e.stack)
+      if (!syncTime) {
+        syncTime = stopwatch.toString();
+      }
+      if (!type) {
+        type = classId(e);
+      }
+      if (thenable && !asyncTime) {
+        asyncTime = stopwatch.toString();
+      }
+      if (e?.stack) {
         this.tux.logger.log(
           e.stack,
           type,
           asyncTime ? `⏱ ${asyncTime}<${syncTime}>` : `⏱ ${syncTime}`
         );
-      result = e;
+        result = e;
+      }
     }
     stopwatch.stop();
     if (typeof result !== 'string') {
       result = inspect(result, {
         depth: Args.includes(/depth=*/g)
           ? parseInt(
-              Args.filter(x => x.startsWith('depth=')[0].replace('depth=', ''))
+              Args.filter(x => x.startsWith('depth=')[0].replace('depth=', '')),
+              10
             ) || 0
           : 0,
         showHidden: Args.includes('showhidden'),
       });
     }
-    if (Args.includes('silent'))
+    if (Args.includes('silent')) {
       return this.tux.logger.log(result, type, 'Evaled Successfully!');
+    }
     if (Args.includes('no-limit')) {
       const res = asyncTime
         ? `⏱ Evaluation took: ${asyncTime}<${syncTime}>`

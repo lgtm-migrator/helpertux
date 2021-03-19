@@ -29,31 +29,33 @@ export default class Message extends BaseEvent {
       msg.content.toLowerCase().includes('help') &&
       !msg.author.bot &&
       msg.guild
-    )
+    ) {
       return this.tux.commands.get('tux -h').execute(msg, []);
-    else if (
+    } else if (
       msg.content.match(/<@(!|)807946103768612864>/g) &&
       !msg.author.bot &&
       msg.guild
-    )
+    ) {
       msg.reply({
         embed: new MessageEmbed()
           .setTitle('My prefix is `sudo `!')
           .setColor('BLUE'),
       });
+    }
     if (
       !msg.content.toLowerCase().startsWith(this.tux.prefix) ||
       msg.author.bot ||
       !msg.guild
-    )
+    ) {
       return;
+    }
     const args = msg.content.slice(this.tux.prefix.length).split(' ');
     const command = `${args.shift().toLowerCase()} ${args.shift()}`;
     const cmd = this.tux.commands.get(command) || this.tux.aliases.get(command);
     if (cmd) {
       if (cmd.cooldowns.has(msg.author.id)) {
         const time = cmd.cooldowns.get(msg.author.id);
-        if (time - Date.now() > 0)
+        if (time - Date.now() > 0) {
           return msg.reply({
             embed: new MessageEmbed()
               .setTitle(
@@ -64,6 +66,7 @@ export default class Message extends BaseEvent {
               )
               .setColor('RED'),
           });
+        }
         cmd.cooldowns.delete(msg.author.id);
       }
       cmd.cooldowns.set(msg.author.id, Date.now() + cmd.cooldown);

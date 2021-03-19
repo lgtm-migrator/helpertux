@@ -32,17 +32,19 @@ export default class Wiki extends BaseCommand {
    * @returns {Promise<import('discord.js').Message>} - returns promise which resolves to discord.js message
    */
   async execute(msg, args) {
-    if (!args.length)
+    if (!args.length) {
       return msg.reply({
         embed: new MessageEmbed()
           .setTitle('You must provide something to search for!')
           .setColor('RED'),
       });
+    }
     const results = await this.searchWiki(args.join(' '));
-    if (!results)
+    if (!results) {
       return msg.reply({
         embed: new MessageEmbed().setTitle('No results found').setColor('RED'),
       });
+    }
     this.tux.logger.log(results, 'INFO', 'ArchWiki Lookup');
     const embedData = [];
     results.slice(0, 15).forEach(x =>

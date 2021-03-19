@@ -32,12 +32,13 @@ export default class SearchAur extends BaseCommand {
    * @returns {Promise<import('discord.js').Message>} - returns a promise which resolves to discord.js message
    */
   async execute(msg, args) {
-    if (!args.length)
+    if (!args.length) {
       return msg.reply({
         embed: new MessageEmbed()
           .setTitle('You must provide a package name!')
           .setColor('RED'),
       });
+    }
     const Args = args
       .filter(x => x.startsWith('--'))
       .map(x => x.replace('--', '').toLowerCase());
@@ -49,22 +50,21 @@ export default class SearchAur extends BaseCommand {
       return msg.reply(`AUR Error: ${error}`);
     }
     if (Args.filter(x => x.match(/sort=[a-z]*|s=[a-z]*/g)).length) {
-      let sorter;
-      if (
+      const sorter =
         Args.filter(x => x.match(/sort=[a-z]*|s=[a-z]*/g))[0].replace(
           /sort=*|s=*/g,
           ''
         ) === 'votes'
-      )
-        sorter = 'NumVotes';
-      else sorter = 'Popularity';
+          ? 'NumVotes'
+          : 'Popularity';
       results.sort((a, b) => b[sorter] - a[sorter]);
     }
     this.tux.logger.log(results, 'Success', 'ArchLinux-User-Repo-Results');
-    if (!results.length)
+    if (!results.length) {
       return msg.reply({
         embed: new MessageEmbed().setTitle('No results found').setColor('RED'),
       });
+    }
     return msg.channel.send({
       content: `I found ${results.length} results for this query!`,
       embed: new MessageEmbed()

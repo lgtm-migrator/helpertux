@@ -1,9 +1,10 @@
 version = 1
 
 [[analyzers]]
-name = "javascript"
 enabled = true
+name = "javascript"
 
-  [analyzers.meta]
-  environment = ["nodejs"]
-  style_guide = "google"
+[analyzers.meta]
+environment = ["nodejs"]
+style_guide = "google"
+module_system = "es-modules"

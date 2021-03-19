@@ -32,19 +32,20 @@ export default class InfoReborn extends BaseCommand {
    * @returns {Promise<import('discord.js').Message | void>} - returns a promise which resolves to discord.js message
    */
   async execute(msg, args) {
-    if (!args.length)
+    if (!args.length) {
       return msg.reply({
         embed: new MessageEmbed()
           .setTitle('You must provide a package name!')
           .setColor('RED'),
       });
+    }
     const {results} = this.getPinfo(args.join(' '));
     this.tux.logger.log(results, 'Success', 'RebornOS-Repo-Results');
-    if (!results.length)
+    if (!results.length) {
       return msg.reply({
         embed: new MessageEmbed().setTitle('No results found').setColor('RED'),
       });
-    console.log(results[0]);
+    }
     return msg.channel.send({
       embed: new MessageEmbed()
         .setTitle(`${results[0].NAME} ${results[0].VERSION}`)
@@ -100,8 +101,8 @@ export default class InfoReborn extends BaseCommand {
           {
             name: 'Package Size:',
             value: `${convert(
-              parseInt(results[0].ISIZE)
-            )} (Compressed: ${convert(parseInt(results[0].CSIZE))})`,
+              parseInt(results[0].ISIZE, 10)
+            )} (Compressed: ${convert(parseInt(results[0].CSIZE, 10))})`,
             inline: true,
           },
           {

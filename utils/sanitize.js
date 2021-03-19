@@ -8,12 +8,15 @@
  * @returns {string | void} - Returns sanitized output
  */
 export function sanitize(input, output) {
-  if (!input || !output) return;
-  const REGEXPESC = /[-/\\^$*+?.()|[\]{}]/g;
+  if (!input || !output) {
+    return;
+  }
   const zws = String.fromCharCode(8203);
-  const sensitivePattern = new RegExp(input.replace(REGEXPESC, '\\$&'), 'gi');
   return output
-    .replace(sensitivePattern, '「ｒｅｄａｃｔｅｄ」')
+    .replace(
+      new RegExp(input.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&'), 'gi'),
+      '「ｒｅｄａｃｔｅｄ」'
+    )
     .replace(/`/g, `\`${zws}`)
     .replace(/@/g, `@${zws}`);
 }

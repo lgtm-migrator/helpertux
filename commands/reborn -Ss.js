@@ -32,18 +32,20 @@ export default class SearchReborn extends BaseCommand {
    * @returns {Promise<import('discord.js').Message | void>} - returns a promise which resolves to discord.js message
    */
   async execute(msg, args) {
-    if (!args.length)
+    if (!args.length) {
       return msg.reply({
         embed: new MessageEmbed()
           .setTitle('You must provide a package name!')
           .setColor('RED'),
       });
+    }
     const {results} = this.getPinfo(args.join(' '));
     this.tux.logger.log(results, 'Success', 'RebornOS-Repo-Results');
-    if (!results.length)
+    if (!results.length) {
       return msg.reply({
         embed: new MessageEmbed().setTitle('No results found').setColor('RED'),
       });
+    }
     msg.channel.send({
       content: `I found ${results.length} results for this query!`,
       embed: new MessageEmbed()
@@ -69,14 +71,18 @@ export default class SearchReborn extends BaseCommand {
           errors: ['time'],
         }
       );
-      if (collected.first().content === 'c') return;
-      let action;
-      if (collected.first().content.startsWith(this.tux.prefix)) {
-        action = parseInt(
-          collected.first().content.slice(this.tux.prefix.length)
-        );
-      } else action = parseInt(collected.first().content);
-      if (isNaN(action) || action > 10 || action > results.length) return;
+      if (collected.first().content.toLowerCase() === 'c') {
+        return;
+      }
+      const action = collected
+        .first()
+        .content.toLowerCase()
+        .startsWith(this.tux.prefix)
+        ? parseInt(collected.first().content.slice(this.tux.prefix.length), 10)
+        : parseInt(collected.first().content, 10);
+      if (isNaN(action) || action > 10 || action > results.length) {
+        return;
+      }
       return msg.channel.send({
         embed: new MessageEmbed()
           .setTitle(

@@ -29,17 +29,19 @@ export default class MessageUpdate extends BaseEvent {
       !newMsg.content.toLowerCase().startsWith(this.tux.prefix) ||
       newMsg.author.bot ||
       !newMsg.guild
-    )
+    ) {
       return;
-    if (newMsg.mentions.has(this.tux.id) && newMsg.content.includes('help'))
+    }
+    if (newMsg.mentions.has(this.tux.id) && newMsg.content.includes('help')) {
       return this.tux.commands.execute(newMsg, []);
+    }
     const args = newMsg.content.slice(this.tux.prefix.length).split(' ');
     const command = `${args.shift().toLowerCase()} ${args.shift()}`;
     const cmd = this.tux.commands.get(command) || this.tux.aliases.get(command);
     if (cmd) {
       if (cmd.cooldowns.has(newMsg.author.id)) {
         const time = cmd.cooldowns.get(newMsg.author.id);
-        if (time - Date.now() > 0)
+        if (time - Date.now() > 0) {
           return newMsg.reply({
             embed: new MessageEmbed()
               .setTitle(
@@ -50,6 +52,7 @@ export default class MessageUpdate extends BaseEvent {
               )
               .setColor('RED'),
           });
+        }
         cmd.cooldowns.delete(newMsg.author.id);
       }
       cmd.cooldowns.set(newMsg.author.id, Date.now() + cmd.cooldown);

@@ -33,18 +33,20 @@ export default class SearchOfficial extends BaseCommand {
    * @returns {Promise<import('discord.js').Message>} - returns a promise which resolves to discord.js message
    */
   async execute(msg, args) {
-    if (!args.length)
+    if (!args.length) {
       return msg.reply({
         embed: new MessageEmbed()
           .setTitle('You must provide a package name!')
           .setColor('RED'),
       });
+    }
     const {results} = await this.getPinfo(args.join(' '));
     this.tux.logger.log(results, 'Success', 'ArchLinux-Repo-Results');
-    if (!results.length)
+    if (!results.length) {
       return msg.reply({
         embed: new MessageEmbed().setTitle('No results found').setColor('RED'),
       });
+    }
     const epoch = results[0].epoch ? `${results[0].epoch}:` : '';
     return msg.channel.send({
       embed: new MessageEmbed()

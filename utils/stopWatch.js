@@ -68,7 +68,9 @@ export class StopWatch {
    * @returns {StopWatch} - returns stopped stopwatch instance
    */
   stop() {
-    if (this.running) this._end = performance.now();
+    if (this.running) {
+      this._end = performance.now();
+    }
     return this;
   }
 
@@ -78,8 +80,12 @@ export class StopWatch {
    */
   toString() {
     const time = this.duration;
-    if (time >= 1000) return `${(time / 1000).toFixed(3)}s`;
-    if (time >= 1) return `${time.toFixed(3)}ms`;
+    if (time >= 1000) {
+      return `${(time / 1000).toFixed(3)}s`;
+    }
+    if (time >= 1) {
+      return `${time.toFixed(3)}ms`;
+    }
     return `${(time * 1000).toFixed(3)}μs`;
   }
 }
