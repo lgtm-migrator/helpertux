@@ -53,5 +53,6 @@ export default class RebornUpdater extends BaseCommand {
         )
         .setColor('BLUE'),
     });
+    this.tux.rebornRepo.delete('elementary-theme');
   }
 }

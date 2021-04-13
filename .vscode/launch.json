@@ -9,7 +9,7 @@
       "runtimeArgs": [
         "--max-old-space-size=400",
         "--expose-gc",
-        "--gc-interval=100",
+        "--gc-interval=100"
       ],
       "program": "${workspaceFolder}/TuxManager.js",
       "envFile": "${workspaceFolder}/.env"
