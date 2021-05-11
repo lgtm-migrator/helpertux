@@ -33,18 +33,20 @@ export default class Getpkgbuild extends BaseCommand {
    * @returns {Promise<import('discord.js').Message>} - returns a promise which resolves to discord.js message
    */
   async execute(msg, args) {
-    if (!args.length)
+    if (!args.length) {
       return msg.reply({
         embed: new MessageEmbed()
           .setTitle('You must provide a package name!')
           .setColor('RED'),
       });
+    }
     const pkgbuild = await this.getPinfo(args.join(' '));
     this.tux.logger.log(pkgbuild, 'Success', 'ArchLinux-User-Repo-Results');
-    if (pkgbuild.startsWith('<!DOCTYPE html>'))
+    if (pkgbuild.startsWith('<!DOCTYPE html>')) {
       return msg.reply({
         embed: new MessageEmbed().setTitle('No results found').setColor('RED'),
       });
+    }
     return msg.channel.send(pkgbuild, {
       split: true,
       code: 'sh',

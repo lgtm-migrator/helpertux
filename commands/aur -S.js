@@ -32,12 +32,13 @@ export default class InfoAur extends BaseCommand {
    * @returns {Promise<import('discord.js').Message>} - returns a promise which resolves to discord.js message
    */
   async execute(msg, args) {
-    if (!args.length)
+    if (!args.length) {
       return msg.reply({
         embed: new MessageEmbed()
           .setTitle('You must provide a package name!')
           .setColor('RED'),
       });
+    }
     const {results, error} = await this.getPinfo(args.join(' '));
     if (error) {
       this.tux.logger.log(error, 'ERROR', 'Aur Error');
@@ -46,10 +47,11 @@ export default class InfoAur extends BaseCommand {
       });
     }
     this.tux.logger.log(results, 'Success', 'ArchLinux-User-Repo-Results');
-    if (!results.length)
+    if (!results.length) {
       return msg.reply({
         embed: new MessageEmbed().setTitle('No results found').setColor('RED'),
       });
+    }
     return msg.channel.send({
       embed: new MessageEmbed()
         .setTitle(`${results[0].Name} ${results[0].Version}`)
