@@ -5,16 +5,12 @@
   "author": "SoulHarsh007",
   "license": "BSD-3-Clause",
   "type": "module",
-  "cacheDirectories": [
-    ".cache",
-    "node_modules"
-  ],
   "scripts": {
     "start": "node --enable-one-shot-optimization --max-old-space-size=400 --expose-gc --gc-interval=100 --clear-free-memory TuxManager.js",
     "lint": "eslint ./*.js ./commands/*.js ./utils/*.js ./events/*.js ./structures/*/*.js"
   },
   "engines": {
-    "node": "15.x.x",
+    "node": "16.x.x",
     "yarn": "1.x.x"
   },
   "husky": {
