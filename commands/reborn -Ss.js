@@ -93,50 +93,42 @@ export default class SearchReborn extends BaseCommand {
           .addFields([
             {
               name: 'Arch:',
-              value: results[action - 1].ARCH,
+              value: `${results[action - 1]?.ARCH}`,
               inline: true,
             },
             {
               name: 'Base Package:',
-              value: results[action - 1].BASE,
+              value: `${results[action - 1]?.BASE}`,
               inline: true,
             },
             {
               name: 'Desc:',
-              value: results[action - 1].DESC,
+              value: `${results[action - 1]?.DESC}`,
               inline: true,
             },
             {
               name: 'Licenses:',
-              value: results[action - 1].LICENSE.toString(),
+              value: `${results[action - 1]?.LICENSE?.toString()}`,
               inline: true,
             },
             {
               name: 'Groups:',
-              value: results[action - 1].GROUPS
-                ? results[action - 1].GROUPS.toString()
-                : 'None',
+              value: results[action - 1].GROUPS?.toString() || 'None',
               inline: true,
             },
             {
               name: 'Replaces:',
-              value: results[action - 1].REPLACES
-                ? results[action - 1].REPLACES.toString()
-                : 'None',
+              value: results[action - 1]?.REPLACES?.toString() || 'None',
               inline: true,
             },
             {
               name: 'Conflicts:',
-              value: results[action - 1].CONFLICTS
-                ? results[action - 1].CONFLICTS.toString()
-                : 'None',
+              value: results[action - 1]?.CONFLICTS?.toString() || 'None',
               inline: true,
             },
             {
               name: 'Provides:',
-              value: results[action - 1].PROVIDES
-                ? results[action - 1].PROVIDES.toString()
-                : 'None',
+              value: results[action - 1]?.PROVIDES?.toString() || 'None',
               inline: true,
             },
             {
@@ -148,55 +140,44 @@ export default class SearchReborn extends BaseCommand {
             },
             {
               name: 'Packager:',
-              value: results[action - 1].PACKAGER,
+              value: `${results[action - 1]?.PACKAGER}`,
               inline: true,
             },
             {
               name: 'Build Date:',
-              value: new Date(
+              value: `${new Date(
                 results[action - 1].BUILDDATE * 1000
-              ).toUTCString(),
+              ).toUTCString()}`,
               inline: true,
             },
             {
               name: `Dependencies (${
-                results[action - 1].DEPENDS
-                  ? results[action - 1].DEPENDS.length
-                  : 0
+                results[action - 1].DEPENDS?.length || 0
               }):`,
-              value: results[action - 1].DEPENDS
-                ? results[action - 1].DEPENDS.toString()
-                : 'None',
+              value: results[action - 1]?.DEPENDS?.toString() || 'None',
               inline: true,
             },
             {
               name: `Optional Dependencies (${
-                results[action - 1].OPTDEPENDS
-                  ? results[action - 1].OPTDEPENDS.length
-                  : 0
+                results[action - 1]?.OPTDEPENDS?.length || 0
               }):`,
-              value: results[action - 1].OPTDEPENDS
-                ? results[action - 1].OPTDEPENDS.map(x =>
-                    x.split(':').shift()
-                  ).toString()
-                : 'None',
+              value:
+                results[action - 1]?.OPTDEPENDS?.map(x =>
+                  x.split(':').shift()
+                ).toString() || 'None',
               inline: true,
             },
             {
               name: 'Make Dependencies:',
               value: `${
-                results[action - 1].MAKEDEPENDS
-                  ? results[action - 1].MAKEDEPENDS
-                  : 0
+                results[action - 1]?.MAKEDEPENDS || 0
               } make dependencies`,
               inline: true,
             },
             {
               name: 'Check Dependencies:',
               value: `${
-                results[action - 1].CHECKDEPENDS
-                  ? results[action - 1].CHECKDEPENDS.length
-                  : 0
+                results[action - 1]?.CHECKDEPENDS?.length || 0
               } make dependencies`,
               inline: true,
             },

@@ -35,7 +35,7 @@ export default class RebornUpdater extends BaseCommand {
         .setDescription(':: Synchronizing package databases...')
         .setColor('BLUE'),
     });
-    await fetchRepo();
+    await fetchRepo(this.tux);
     msgOld.edit({
       embed: new MessageEmbed()
         .setTitle('Syncing Reborn-OS Repo...')
@@ -53,6 +53,5 @@ export default class RebornUpdater extends BaseCommand {
         )
         .setColor('BLUE'),
     });
-    this.tux.rebornRepo.delete('elementary-theme');
   }
 }

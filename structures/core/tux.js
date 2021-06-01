@@ -22,7 +22,10 @@ export class HelperTux extends Client {
       messageSweepInterval: 25,
       messageEditHistoryMaxSize: 2,
       disableMentions: 'everyone',
-      ws: {intents: ['GUILDS', 'GUILD_MESSAGES'], compress: true},
+      ws: {
+        intents: ['GUILDS', 'GUILD_MESSAGES'],
+        compress: true,
+      },
       presence: {
         activity: {
           name: 'sudo tux -h',
@@ -30,10 +33,11 @@ export class HelperTux extends Client {
         },
       },
     });
+    this.prefix = 'sudo ';
+    this.logger = new Logger();
     this.aliases = new Collection();
     this.commands = new Collection();
-    this.logger = new Logger();
-    this.prefix = 'sudo ';
     this.rebornRepo = new Collection();
+    this.tldr = new Collection();
   }
 }

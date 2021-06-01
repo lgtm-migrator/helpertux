@@ -34,9 +34,9 @@ export class Logger {
   }
   /**
    * @function log
-   * @param {any} data - log format param [date time `${result}`] [`${type}`] - `${data}`
-   * @param {any} type - log format param [date time `${result}`] [`${type}`] - `${data}`
-   * @param {any} result - log format param [date time `${result}`] [`${type}`] - `${data}`
+   * @param {any} [data] - log format param [date time `${result}`] [`${type}`] - `${data}`
+   * @param {any} [type] - log format param [date time `${result}`] [`${type}`] - `${data}`
+   * @param {any} [result] - log format param [date time `${result}`] [`${type}`] - `${data}`
    */
   log(data, type, result) {
     const date = new Date();
@@ -70,11 +70,13 @@ export class Logger {
   }
   /**
    * @function clearLogs
+   * @param {boolean} [callGC] - Call gc optionally
    * @returns {string} returns a string to represent successful cleanup
    */
-  clearLogs() {
+  clearLogs(callGC) {
     delete this.logs;
     this.logs = [];
+    callGC ? global.gc() : undefined;
     return 'Logs cleared successfully';
   }
 }

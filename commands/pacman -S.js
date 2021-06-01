@@ -58,17 +58,17 @@ export default class SearchOfficial extends BaseCommand {
         .addFields([
           {
             name: 'Arch:',
-            value: results[0].arch,
+            value: `${results[0]?.arch}`,
             inline: true,
           },
           {
             name: 'Repo:',
-            value: results[0].repo,
+            value: `${results[0]?.repo}`,
             inline: true,
           },
           {
             name: 'Base Package:',
-            value: results[0].pkgbase,
+            value: `${results[0]?.pkgbase}`,
             inline: true,
           },
           {
@@ -78,42 +78,32 @@ export default class SearchOfficial extends BaseCommand {
           },
           {
             name: 'Licenses:',
-            value: results[0].licenses.toString(),
+            value: `${results[0]?.licenses?.toString()}`,
             inline: true,
           },
           {
             name: 'Groups:',
-            value: results[0].groups.length
-              ? results[0].groups.toString()
-              : 'None',
+            value: results[0]?.groups?.toString() || 'None',
             inline: true,
           },
           {
             name: 'Replaces:',
-            value: results[0].replaces.length
-              ? results[0].replaces.toString()
-              : 'None',
+            value: results[0]?.replaces?.toString() || 'None',
             inline: true,
           },
           {
             name: 'Conflicts:',
-            value: results[0].conflicts.length
-              ? results[0].conflicts.toString()
-              : 'None',
+            value: results[0]?.conflicts?.toString() || 'None',
             inline: true,
           },
           {
             name: 'Provides:',
-            value: results[0].provides.length
-              ? results[0].provides.toString()
-              : 'None',
+            value: results[0]?.provides?.toString() || 'None',
             inline: true,
           },
           {
             name: 'Maintainers:',
-            value: results[0].maintainers.length
-              ? results[0].maintainers.toString()
-              : 'None',
+            value: results[0]?.maintainers?.toString() || 'None',
             inline: true,
           },
           {
@@ -125,17 +115,17 @@ export default class SearchOfficial extends BaseCommand {
           },
           {
             name: 'Packager:',
-            value: results[0].packager,
+            value: `${results[0].packager}`,
             inline: true,
           },
           {
             name: 'Build Date:',
-            value: new Date(results[0].build_date).toUTCString(),
+            value: `${new Date(results[0].build_date).toUTCString()}`,
             inline: true,
           },
           {
             name: 'Last Updated:',
-            value: new Date(results[0].last_update).toUTCString(),
+            value: `${new Date(results[0].last_update).toUTCString()}`,
             inline: true,
           },
           {
@@ -147,26 +137,25 @@ export default class SearchOfficial extends BaseCommand {
           },
           {
             name: `Dependencies (${results[0].depends.length}):`,
-            value: results[0].depends.length
-              ? results[0].depends.toString()
-              : 'None',
+            value: results[0]?.depends?.toString() || 'None',
             inline: true,
           },
           {
             name: `Optional Dependencies (${results[0].optdepends.length}):`,
-            value: results[0].optdepends.length
-              ? results[0].optdepends.map(x => x.split(':').shift()).toString()
-              : 'None',
+            value:
+              results[0]?.optdepends
+                ?.map(x => x.split(':').shift())
+                .toString() || 'None',
             inline: true,
           },
           {
             name: 'Make Dependencies:',
-            value: `${results[0].makedepends.length} make dependencies`,
+            value: `${results[0]?.makedepends?.length} make dependencies`,
             inline: true,
           },
           {
             name: 'Check Dependencies:',
-            value: `${results[0].checkdepends.length} make dependencies`,
+            value: `${results[0]?.checkdepends?.length} make dependencies`,
             inline: true,
           },
         ]),

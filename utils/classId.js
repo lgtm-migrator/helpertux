@@ -7,8 +7,7 @@
  * @returns {string} - Input's class name
  */
 export function classId(value) {
-  const type = typeof value;
-  switch (type) {
+  switch (typeof value) {
     case 'object':
       return value === null
         ? 'null'
@@ -18,6 +17,6 @@ export function classId(value) {
     case 'undefined':
       return 'void';
     default:
-      return type;
+      return typeof value;
   }
 }

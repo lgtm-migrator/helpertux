@@ -60,53 +60,49 @@ export default class InfoAur extends BaseCommand {
         .addFields([
           {
             name: 'Base:',
-            value: results[0].PackageBase,
+            value: `${results[0].PackageBase}`,
             inline: true,
           },
           {
             name: 'Desc:',
-            value: results[0].Description,
+            value: `${results[0].Description}`,
             inline: true,
           },
           {
             name: 'Keywords:',
-            value: results[0].Keywords.length
-              ? results[0].Keywords.toString()
-              : 'None',
+            value: results[0]?.Keywords?.toString() || 'None',
             inline: true,
           },
           {
             name: 'Licenses:',
-            value: results[0].License.length
-              ? results[0].License.toString()
-              : 'None',
+            value: results[0]?.License?.toString() || 'None',
             inline: true,
           },
           {
             name: 'Maintainer:',
-            value: results[0].Maintainer.length
-              ? results[0].Maintainer
-              : 'Orphan',
+            value: results[0]?.Maintainer || 'Orphan',
             inline: true,
           },
           {
             name: 'Votes:',
-            value: results[0].NumVotes,
+            value: `${results[0]?.NumVotes}`,
             inline: true,
           },
           {
             name: 'Popularity:',
-            value: results[0].Popularity,
+            value: `${results[0].Popularity}`,
             inline: true,
           },
           {
             name: 'First Submitted:',
-            value: new Date(results[0].FirstSubmitted * 1000).toUTCString(),
+            value: `${new Date(
+              results[0].FirstSubmitted * 1000
+            ).toUTCString()}`,
             inline: true,
           },
           {
             name: 'Last Updated:',
-            value: new Date(results[0].LastModified * 1000).toUTCString(),
+            value: `${new Date(results[0].LastModified * 1000).toUTCString()}`,
             inline: true,
           },
           {
@@ -117,47 +113,37 @@ export default class InfoAur extends BaseCommand {
             inline: true,
           },
           {
-            name: `Dependencies (${results[0].Depends.length}):`,
-            value: results[0].Depends
-              ? results[0].Depends.length
-                ? results[0].Depends.toString()
-                : 'None'
-              : 'None',
+            name: `Dependencies (${results[0]?.Depends?.length || 0}):`,
+            value: results[0]?.Depends?.toString() || 'None',
             inline: true,
           },
           {
             name: `Optional Dependencies:`,
             value: `${
-              results[0].OptDepends ? results[0].OptDepends.length : 0
+              results[0]?.OptDepends?.length || 0
             } optional dependencies`,
             inline: true,
           },
           {
             name: `Check Dependencies:`,
             value: `${
-              results[0].CheckDepends ? results[0].CheckDepends.length : 0
+              results[0]?.CheckDepends?.length || 0
             } check dependencies`,
             inline: true,
           },
           {
             name: `Make Dependencies:`,
-            value: `${
-              results[0].MakeDepends ? results[0].MakeDepends.length : 0
-            } make dependencies`,
+            value: `${results[0]?.MakeDepends?.length || 0} make dependencies`,
             inline: true,
           },
           {
             name: `Conflicts:`,
-            value: results[0].Conflicts
-              ? results[0].Conflicts.toString()
-              : 'None',
+            value: results[0]?.Conflicts?.toString() || 'None',
             inline: true,
           },
           {
             name: `Provides:`,
-            value: results[0].Provides
-              ? results[0].Provides.toString()
-              : 'None',
+            value: results[0]?.Provides?.toString() || 'None',
             inline: true,
           },
         ])

@@ -54,48 +54,42 @@ export default class InfoReborn extends BaseCommand {
         .addFields([
           {
             name: 'Arch:',
-            value: results[0].ARCH,
+            value: `${results[0]?.ARCH}`,
             inline: true,
           },
           {
             name: 'Base Package:',
-            value: results[0].BASE,
+            value: `${results[0]?.BASE}`,
             inline: true,
           },
           {
             name: 'Desc:',
-            value: results[0].DESC,
+            value: `${results[0]?.DESC}`,
             inline: true,
           },
           {
             name: 'Licenses:',
-            value: results[0].LICENSE.toString(),
+            value: `${results[0]?.LICENSE?.toString()}`,
             inline: true,
           },
           {
             name: 'Groups:',
-            value: results[0].GROUPS ? results[0].GROUPS.toString() : 'None',
+            value: results[0]?.GROUPS?.toString() || 'None',
             inline: true,
           },
           {
             name: 'Replaces:',
-            value: results[0].REPLACES
-              ? results[0].REPLACES.toString()
-              : 'None',
+            value: results[0]?.REPLACES?.toString() || 'None',
             inline: true,
           },
           {
             name: 'Conflicts:',
-            value: results[0].CONFLICTS
-              ? results[0].CONFLICTS.toString()
-              : 'None',
+            value: results[0]?.CONFLICTS?.toString() || 'None',
             inline: true,
           },
           {
             name: 'Provides:',
-            value: results[0].PROVIDES
-              ? results[0].PROVIDES.toString()
-              : 'None',
+            value: results[0]?.PROVIDES?.toString() || 'None',
             inline: true,
           },
           {
@@ -107,42 +101,37 @@ export default class InfoReborn extends BaseCommand {
           },
           {
             name: 'Packager:',
-            value: results[0].PACKAGER,
+            value: `${results[0].PACKAGER}`,
             inline: true,
           },
           {
             name: 'Build Date:',
-            value: new Date(results[0].BUILDDATE * 1000).toUTCString(),
+            value: `${new Date(results[0].BUILDDATE * 1000).toUTCString()}`,
             inline: true,
           },
           {
-            name: `Dependencies (${
-              results[0].DEPENDS ? results[0].DEPENDS.length : 0
-            }):`,
-            value: results[0].DEPENDS ? results[0].DEPENDS.toString() : 'None',
+            name: `Dependencies (${results[0]?.DEPENDS?.length || 0}):`,
+            value: results[0]?.DEPENDS?.toString() || 'None',
             inline: true,
           },
           {
             name: `Optional Dependencies (${
-              results[0].OPTDEPENDS ? results[0].OPTDEPENDS.length : 0
+              results[0]?.OPTDEPENDS?.length || 0
             }):`,
-            value: results[0].OPTDEPENDS
-              ? results[0].OPTDEPENDS.map(x => x.split(':').shift()).toString()
-              : 'None',
+            value:
+              results[0]?.OPTDEPENDS?.map(x =>
+                x.split(':').shift()
+              ).toString() || 'None',
             inline: true,
           },
           {
             name: 'Make Dependencies:',
-            value: `${
-              results[0].MAKEDEPENDS ? results[0].MAKEDEPENDS : 0
-            } make dependencies`,
+            value: `${results[0]?.MAKEDEPENDS || 0} make dependencies`,
             inline: true,
           },
           {
             name: 'Check Dependencies:',
-            value: `${
-              results[0].CHECKDEPENDS ? results[0].CHECKDEPENDS.length : 0
-            } make dependencies`,
+            value: `${results[0]?.CHECKDEPENDS?.length || 0} make dependencies`,
             inline: true,
           },
         ]),

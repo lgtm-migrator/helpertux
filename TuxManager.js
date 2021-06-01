@@ -29,7 +29,10 @@ if (cluster.isMaster) {
     reply
       .type('application/json')
       .code(lastStatus ? 200 : 500)
-      .send({server: 'online', bot: lastStatus ? 'online' : 'offline'});
+      .send({
+        server: 'online',
+        bot: lastStatus ? 'online' : 'offline',
+      });
   });
   (async () => {
     try {
@@ -71,7 +74,12 @@ if (cluster.isMaster) {
     .on('SIGINT', () => process.exit(0))
     .on('SIGTERM', () => process.exit(0))
     .on('beforeExit', () => process.exit(0))
-    .on('message', msg => {
-      if (msg === 'status') process.send({msg, status: tux.ws.ping});
-    });
+    .on('message', msg =>
+      msg === 'status'
+        ? process.send({
+            msg,
+            status: tux.ws.ping,
+          })
+        : undefined
+    );
 }

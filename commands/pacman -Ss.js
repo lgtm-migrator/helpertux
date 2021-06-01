@@ -99,62 +99,52 @@ export default class SearchOfficial extends BaseCommand {
           .addFields([
             {
               name: 'Arch:',
-              value: results[action - 1].arch,
+              value: `${results[action - 1]?.arch}`,
               inline: true,
             },
             {
               name: 'Repo:',
-              value: results[action - 1].repo,
+              value: `${results[action - 1]?.repo}`,
               inline: true,
             },
             {
               name: 'Base Package:',
-              value: results[action - 1].pkgbase,
+              value: `${results[action - 1]?.pkgbase}`,
               inline: true,
             },
             {
               name: 'Desc:',
-              value: results[action - 1].pkgdesc,
+              value: `${results[action - 1]?.pkgdesc}`,
               inline: true,
             },
             {
               name: 'Licenses:',
-              value: results[action - 1].licenses.toString(),
+              value: `${results[action - 1]?.licenses?.toString()}`,
               inline: true,
             },
             {
               name: 'Groups:',
-              value: results[action - 1].groups.length
-                ? results[action - 1].groups.toString()
-                : 'None',
+              value: results[action - 1]?.groups?.toString() || 'None',
               inline: true,
             },
             {
               name: 'Replaces:',
-              value: results[action - 1].replaces.length
-                ? results[action - 1].replaces.toString()
-                : 'None',
+              value: results[action - 1]?.replaces?.toString() || 'None',
               inline: true,
             },
             {
               name: 'Conflicts:',
-              value: results[action - 1].conflicts.length
-                ? results[action - 1].conflicts.toString()
-                : 'None',
+              value: results[action - 1]?.conflicts?.toString() || 'None',
               inline: true,
             },
             {
               name: 'Provides:',
-              value: results[action - 1].provides.length
-                ? results[action - 1].provides.toString()
-                : 'None',
+              value: results[action - 1]?.provides?.toString() || 'None',
               inline: true,
             },
             {
               name: 'Maintainers:',
-              value: results[action - 1].maintainers.length
-                ? results[action - 1].maintainers.toString()
-                : 'None',
+              value: results[action - 1]?.maintainers?.toString() || 'None',
               inline: true,
             },
             {
@@ -166,17 +156,21 @@ export default class SearchOfficial extends BaseCommand {
             },
             {
               name: 'Packager:',
-              value: results[action - 1].packager,
+              value: `${results[action - 1]?.packager}`,
               inline: true,
             },
             {
               name: 'Build Date:',
-              value: new Date(results[action - 1].build_date).toUTCString(),
+              value: `${new Date(
+                results[action - 1].build_date
+              ).toUTCString()}`,
               inline: true,
             },
             {
               name: 'Last Updated:',
-              value: new Date(results[action - 1].last_update).toUTCString(),
+              value: `${new Date(
+                results[action - 1].last_update
+              ).toUTCString()}`,
               inline: true,
             },
             {
@@ -188,33 +182,30 @@ export default class SearchOfficial extends BaseCommand {
             },
             {
               name: `Dependencies (${results[action - 1].depends.length}):`,
-              value: results[action - 1].depends
-                ? results[action - 1].depends.toString()
-                : 'None',
+              value: results[action - 1]?.depends?.toString() || 'None',
               inline: true,
             },
             {
               name: `Optional Dependencies (${
-                results[action - 1].optdepends.length
+                results[action - 1]?.optdepends?.length
               }):`,
-              value: results[action - 1].optdepends.length
-                ? results[action - 1].optdepends
-                    .map(x => x.split(':').shift())
-                    .toString()
-                : 'None',
+              value:
+                results[action - 1]?.optdepends
+                  ?.map(x => x.split(':').shift())
+                  .toString() || 'None',
               inline: true,
             },
             {
               name: 'Make Dependencies:',
               value: `${
-                results[action - 1].makedepends.length
+                results[action - 1]?.makedepends?.length
               } make dependencies`,
               inline: true,
             },
             {
               name: 'Check Dependencies:',
               value: `${
-                results[action - 1].checkdepends.length
+                results[action - 1]?.checkdepends?.length
               } make dependencies`,
               inline: true,
             },

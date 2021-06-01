@@ -11,12 +11,11 @@ export function sanitize(input, output) {
   if (!input || !output) {
     return;
   }
-  const zws = String.fromCharCode(8203);
   return output
     .replace(
       new RegExp(input.replace(/[-/\\^$*+?.()|[\]{}]/gu, '\\$&'), 'giu'),
       '「ｒｅｄａｃｔｅｄ」'
     )
-    .replace(/`/gu, `\`${zws}`)
-    .replace(/@/gu, `@${zws}`);
+    .replace(/`/gu, `\`${String.fromCharCode(8203)}`)
+    .replace(/@/gu, `@${String.fromCharCode(8203)}`);
 }
