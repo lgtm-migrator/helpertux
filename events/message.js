@@ -46,7 +46,7 @@ export default class Message extends BaseEvent {
     const args = msg.content.slice(this.tux.prefix.length).split(' ');
     const command = `${args.shift().toLowerCase()} ${args.shift()}`;
     const cmd = this.tux.commands.get(command) || this.tux.aliases.get(command);
-    if (!cmd) {
+    if (cmd) {
       if (cmd.cooldowns.has(msg.author.id)) {
         const time = cmd.cooldowns.get(msg.author.id);
         if (time - Date.now() > 0) {

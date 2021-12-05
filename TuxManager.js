@@ -16,7 +16,7 @@ if (cluster.isPrimary) {
     );
     node = cluster.fork();
   });
-  let lastStatus = false;
+  let lastStatus = true;
   node.on('message', message => {
     if (message.msg === 'status') {
       lastStatus = message.status;
