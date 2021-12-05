@@ -24,35 +24,29 @@ export default class Message extends BaseEvent {
    * @returns {Promise<import('discord.js').Message> | void} - returns void or promise which resolves to discord.js message object
    */
   execute(msg) {
+    if (msg.author.bot || !msg.guild) {
+      return;
+    }
     if (
       msg.content.match(/<@(!|)807946103768612864>/gu) &&
-      msg.content.toLowerCase().includes('help') &&
-      !msg.author.bot &&
-      msg.guild
+      msg.content.toLowerCase().includes('help')
     ) {
       return this.tux.commands.get('tux -h').execute(msg, []);
-    } else if (
-      msg.content.match(/<@(!|)807946103768612864>/gu) &&
-      !msg.author.bot &&
-      msg.guild
-    ) {
-      msg.reply({
+    }
+    if (msg.content.match(/<@(!|)807946103768612864>/gu)) {
+      return msg.reply({
         embed: new MessageEmbed()
           .setTitle('My prefix is `sudo `!')
           .setColor('BLUE'),
       });
     }
-    if (
-      !msg.content.toLowerCase().startsWith(this.tux.prefix) ||
-      msg.author.bot ||
-      !msg.guild
-    ) {
+    if (!msg.content.toLowerCase().startsWith(this.tux.prefix)) {
       return;
     }
     const args = msg.content.slice(this.tux.prefix.length).split(' ');
     const command = `${args.shift().toLowerCase()} ${args.shift()}`;
     const cmd = this.tux.commands.get(command) || this.tux.aliases.get(command);
-    if (cmd) {
+    if (!cmd) {
       if (cmd.cooldowns.has(msg.author.id)) {
         const time = cmd.cooldowns.get(msg.author.id);
         if (time - Date.now() > 0) {
@@ -77,7 +71,7 @@ export default class Message extends BaseEvent {
         this.tux.logger.log(
           `${cmd.name} was executed in ${msg.guild.name} by ${msg.author.tag}`,
           'INFO',
-          'Message Execution'
+          'Command Execution'
         );
       } catch (error) {
         this.tux.logger.log(error, 'Error', 'Failed to execute command');

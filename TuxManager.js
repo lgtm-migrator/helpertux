@@ -3,8 +3,8 @@ import {HelperTux} from './structures/core/tux.js';
 import {load} from './utils/TuxProcessHelper.js';
 import cluster from 'cluster';
 import fastify from 'fastify';
-import {get} from 'https';
-if (cluster.isMaster) {
+
+if (cluster.isPrimary) {
   let x = 0;
   console.log(`Tux Process Manager Online, PID: ${process.pid}`);
   let node = cluster.fork();
@@ -16,16 +16,16 @@ if (cluster.isMaster) {
     );
     node = cluster.fork();
   });
-  get(process.env.HOST_URL);
-  node.send('status');
-  setInterval(() => get(process.env.HOST_URL), 1500000);
-  setInterval(() => node.send('status'), 15000);
   let lastStatus = false;
   node.on('message', message => {
-    if (message.msg === 'status') lastStatus = message.status;
+    if (message.msg === 'status') {
+      lastStatus = message.status;
+    }
   });
+  node.send('status');
+  setInterval(() => node.send('status'), 15000);
   const server = fastify();
-  server.get('/', async (request, reply) => {
+  server.get('/', async (_request, reply) => {
     reply
       .type('application/json')
       .code(lastStatus ? 200 : 500)

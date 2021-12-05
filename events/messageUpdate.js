@@ -20,11 +20,11 @@ export default class MessageUpdate extends BaseEvent {
 
   /**
    * @function execute
-   * @param {import('discord.js').Message} msg - the message object
-   * @param {import('discord.js').Message} newMsg - the message object
+   * @param {import('discord.js').Message} _msg - the old message object
+   * @param {import('discord.js').Message} newMsg - the new message object
    * @returns {Promise<import('discord.js').Message> | void} - returns void or promise which resolves to discord.js message object
    */
-  execute(msg, newMsg) {
+  execute(_msg, newMsg) {
     if (
       !newMsg.content.toLowerCase().startsWith(this.tux.prefix) ||
       newMsg.author.bot ||
