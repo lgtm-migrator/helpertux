@@ -4,7 +4,7 @@ import {cpus} from 'os';
 import {prettyMS} from '@nia3208/pretty-ms';
 
 /**
- * @author SoulHarsh007 <harshtheking@hotmail.com>
+ * @author SoulHarsh007 <harsh.peshwani@outlook.com>
  * @copyright SoulHarsh007 2021
  * @since v1.0.0-Beta
  * @class Ping

@@ -7,7 +7,7 @@ import {MessageEmbed} from 'discord.js';
 import {sanitize} from '../utils/sanitize.js';
 
 /**
- * @author SoulHarsh007 <harshtheking@hotmail.com>
+ * @author SoulHarsh007 <harsh.peshwani@outlook.com>
  * @copyright SoulHarsh007 2021
  * @since v1.0.0-Beta
  * @class Eval

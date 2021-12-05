@@ -4,7 +4,7 @@ import {MessageEmbed} from 'discord.js';
 import convert from 'pretty-bytes';
 
 /**
- * @author SoulHarsh007 <harshtheking@hotmail.com>
+ * @author SoulHarsh007 <harsh.peshwani@outlook.com>
  * @copyright SoulHarsh007 2021
  * @since v1.0.0-Beta
  * @class InfoOfficial

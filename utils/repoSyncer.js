@@ -1,16 +1,10 @@
 import {centra} from '@nia3208/centra';
 import {path7za} from '7zip-bin';
 import {execSync} from 'child_process';
-import {
-  writeFileSync,
-  readdirSync,
-  readFileSync,
-  existsSync,
-  mkdirSync,
-} from 'fs';
+import {writeFileSync, readdirSync, readFileSync, rmSync, mkdirSync} from 'fs';
 
 /**
- * @author SoulHarsh007 <harshtheking@hotmail.com>
+ * @author SoulHarsh007 <harsh.peshwani@outlook.com>
  * @copyright SoulHarsh007 2021
  * @since v1.0.0-Beta
  * @async
@@ -45,9 +39,11 @@ export async function fetchRepo(tux) {
   } catch (error) {
     tux.logger.log(`Failed at storing repo: ${error}`, 'ERROR', 'REPO-SYNC');
   }
-  if (!existsSync('./repo/extracted')) {
-    mkdirSync('./repo/extracted');
-  }
+  rmSync('./repo/extracted', {
+    recursive: true,
+    force: true,
+  });
+  mkdirSync('./repo/extracted');
   try {
     execSync(`${path7za} x ./repo/db.tar.xz -y -o./repo/`);
     execSync(`${path7za} x ./repo/db.tar -y -o./repo/extracted/`);
@@ -62,7 +58,7 @@ export async function fetchRepo(tux) {
 }
 
 /**
- * @author SoulHarsh007 <harshtheking@hotmail.com>
+ * @author SoulHarsh007 <harsh.peshwani@outlook.com>
  * @copyright SoulHarsh007 2021
  * @since v1.0.0-Beta
  * @function cacheRepo
@@ -86,7 +82,7 @@ export function cacheRepo(tux) {
 }
 
 /**
- * @author SoulHarsh007 <harshtheking@hotmail.com>
+ * @author SoulHarsh007 <harsh.peshwani@outlook.com>
  * @copyright SoulHarsh007 2021
  * @since v1.0.0-Beta
  * @async
@@ -109,9 +105,11 @@ export async function fetchTLDR(tux) {
     );
   }
   writeFileSync('./tldr/data.zip', data);
-  if (!existsSync('./tldr/extracted')) {
-    mkdirSync('./tldr/extracted');
-  }
+  rmSync('./tldr/extracted', {
+    recursive: true,
+    force: true,
+  });
+  mkdirSync('./tldr/extracted');
   try {
     execSync(`${path7za} x ./tldr/data.zip -y -o./tldr/extracted/`);
   } catch (error) {
@@ -125,7 +123,7 @@ export async function fetchTLDR(tux) {
 }
 
 /**
- * @author SoulHarsh007 <harshtheking@hotmail.com>
+ * @author SoulHarsh007 <harsh.peshwani@outlook.com>
  * @copyright SoulHarsh007 2021
  * @since v1.0.0-Beta
  * @function cacheTLDR

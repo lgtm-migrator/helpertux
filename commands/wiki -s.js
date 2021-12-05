@@ -4,7 +4,7 @@ import {centra} from '@nia3208/centra';
 import cheerio from 'cheerio';
 
 /**
- * @author SoulHarsh007 <harshtheking@hotmail.com>
+ * @author SoulHarsh007 <harsh.peshwani@outlook.com>
  * @copyright SoulHarsh007 2021
  * @since v1.0.0-Beta
  * @class Wiki

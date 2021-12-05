@@ -5,9 +5,10 @@ import {
   fetchTLDR,
   cacheTLDR,
 } from '../utils/repoSyncer.js';
+import {checkRepo} from '../utils/repoChecker.js';
 
 /**
- * @author SoulHarsh007 <harshtheking@hotmail.com>
+ * @author SoulHarsh007 <harsh.peshwani@outlook.com>
  * @copyright SoulHarsh007 2021
  * @since v1.0.0-Beta
  * @class Ready
@@ -34,6 +35,8 @@ export default class Ready extends BaseEvent {
     );
     await fetchRepo(this.tux);
     cacheRepo(this.tux);
+    checkRepo(this.tux);
+    setInterval(() => checkRepo(this.tux), 28800000);
     await fetchTLDR(this.tux);
     cacheTLDR(this.tux);
   }
