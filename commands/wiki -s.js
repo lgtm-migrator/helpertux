@@ -1,7 +1,7 @@
 import BaseCommand from '../structures/command/baseCommand.js';
 import {MessageEmbed} from 'discord.js';
 import {centra} from '@nia3208/centra';
-import cheerio from 'cheerio';
+import * as cheerio from 'cheerio';
 
 /**
  * @author SoulHarsh007 <harsh.peshwani@outlook.com>

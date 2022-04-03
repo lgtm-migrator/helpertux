@@ -5,7 +5,11 @@ import {
   fetchTLDR,
   cacheTLDR,
 } from '../utils/repoSyncer.js';
-import {checkRepo, checkPackages} from '../utils/repoChecker.js';
+import {
+  archPackagesMonitor,
+  checkRepo,
+  checkPackages,
+} from '../utils/repoChecker.js';
 
 /**
  * @author SoulHarsh007 <harsh.peshwani@outlook.com>
@@ -40,5 +44,7 @@ export default class Ready extends BaseEvent {
     await fetchTLDR(this.tux);
     cacheTLDR(this.tux);
     setTimeout(() => checkPackages(this.tux), 10000);
+    archPackagesMonitor(this.tux);
+    setInterval(() => checkRepo(this.tux), 900000);
   }
 }
