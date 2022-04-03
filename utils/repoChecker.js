@@ -298,7 +298,7 @@ export async function checkPackages(tux) {
 export async function archPackagesMonitor(tux) {
   const startTS = Date.now();
   const channel = await tux.channels.fetch(
-    process.env.REPOSITORY_UPDATES_CHANNEL
+    process.env.ARCH_REPOSITORY_UPDATES_CHANNEL
   );
   const trim = (str, max) =>
     str.length > max ? `${str.slice(0, max - 3)}...` : str;
