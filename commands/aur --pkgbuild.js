@@ -59,7 +59,7 @@ export default class Getpkgbuild extends BaseCommand {
    * @returns {Promise<string>} - PKGBUILD
    */
   async getPinfo(name) {
-    return await centra('https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD')
+    return centra('https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD')
       .query('h', name)
       .text();
   }

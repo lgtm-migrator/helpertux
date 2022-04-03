@@ -25,13 +25,12 @@ export default class TLDRInfo extends BaseCommand {
   }
 
   /**
-   * @async
    * @function execute
    * @param {import('discord.js').Message} msg - the message object
    * @param {string[]} args - arguments provided by user
-   * @returns {Promise<import('discord.js').Message | void>} - returns a promise which resolves to discord.js message
+   * @returns {import('discord.js').Message | void} - returns a promise which resolves to discord.js message
    */
-  async execute(msg, args) {
+  execute(msg, args) {
     if (!args.length) {
       return msg.reply({
         embed: new MessageEmbed()
@@ -49,7 +48,7 @@ export default class TLDRInfo extends BaseCommand {
           .setColor('RED'),
       });
     }
-    msg.channel.send({
+    return msg.channel.send({
       content: readFileSync(
         `./tldr/extracted/pages/${data.platform}/${data.name}.md`
       ),

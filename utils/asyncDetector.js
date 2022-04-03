@@ -9,14 +9,12 @@
 export function asyncDetect(input) {
   if (typeof input !== 'object' || input === null) {
     return false;
-  } else {
-    if (input instanceof Promise) {
-      return true;
-    } else if (
-      typeof input.then === 'function' &&
-      typeof input.catch === 'function'
-    ) {
-      return true;
-    }
   }
+  if (
+    input instanceof Promise ||
+    (typeof input.then === 'function' && typeof input.catch === 'function')
+  ) {
+    return true;
+  }
+  return false;
 }

@@ -24,12 +24,11 @@ export default class Help extends BaseCommand {
   }
 
   /**
-   * @async
    * @param {import('discord.js').Message} msg -
    * @param {string[]} args - arguments provided by user
-   * @returns {Promise<import('discord.js').Message>} - returns promise which resolves to discord.js message
+   * @returns {import('discord.js').Message} - returns promise which resolves to discord.js message
    */
-  async execute(msg, args) {
+  execute(msg, args) {
     if (
       args.length &&
       (this.tux.commands.has(args.join(' ')) ||

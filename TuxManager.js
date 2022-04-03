@@ -25,7 +25,7 @@ if (cluster.isPrimary) {
   node.send('status');
   setInterval(() => node.send('status'), 15000);
   const server = fastify();
-  server.get('/', async (_request, reply) => {
+  server.get('/', (_request, reply) => {
     reply
       .type('application/json')
       .code(lastStatus ? 200 : 500)
@@ -74,12 +74,12 @@ if (cluster.isPrimary) {
     .on('SIGINT', () => process.exit(0))
     .on('SIGTERM', () => process.exit(0))
     .on('beforeExit', () => process.exit(0))
-    .on('message', msg =>
-      msg === 'status'
-        ? process.send({
-            msg,
-            status: tux.ws.ping,
-          })
-        : undefined
-    );
+    .on('message', msg => {
+      if (msg === 'status') {
+        process.send({
+          msg,
+          status: tux.ws.ping,
+        });
+      }
+    });
 }

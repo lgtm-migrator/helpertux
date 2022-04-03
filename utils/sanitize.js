@@ -9,7 +9,7 @@
  */
 export function sanitize(input, output) {
   if (!input || !output) {
-    return;
+    return '';
   }
   return output
     .replace(

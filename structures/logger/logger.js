@@ -40,7 +40,9 @@ export class Logger {
    */
   log(data, type, result) {
     const date = new Date();
-    if (typeof data !== 'string') data = inspect(data);
+    if (typeof data !== 'string') {
+      data = inspect(data);
+    }
     this.logs.push(
       `[${date
         .toLocaleDateString('en-us', {
@@ -76,7 +78,9 @@ export class Logger {
   clearLogs(callGC) {
     delete this.logs;
     this.logs = [];
-    callGC ? global.gc() : undefined;
+    if (callGC) {
+      global.gc();
+    }
     return 'Logs cleared successfully';
   }
 }

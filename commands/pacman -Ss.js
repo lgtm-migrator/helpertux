@@ -227,7 +227,7 @@ export default class SearchOfficial extends BaseCommand {
    * @returns {Promise<{version: number, limit: number, valid: boolean, results: Results, num_pages: number, page: number}>} - Package information
    */
   async getPinfo(name, filters = {}) {
-    return await centra('https://archlinux.org/packages/search/json/')
+    return centra('https://archlinux.org/packages/search/json/')
       .query('q', name)
       .json();
   }

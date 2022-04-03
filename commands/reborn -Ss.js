@@ -134,8 +134,10 @@ export default class SearchReborn extends BaseCommand {
             {
               name: 'Package Size:',
               value: `${convert(
-                parseInt(results[action - 1].ISIZE)
-              )} (Compressed: ${convert(parseInt(results[action - 1].CSIZE))})`,
+                parseInt(results[action - 1].ISIZE, 10)
+              )} (Compressed: ${convert(
+                parseInt(results[action - 1].CSIZE, 10)
+              )})`,
               inline: true,
             },
             {
