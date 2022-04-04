@@ -341,8 +341,10 @@ export async function archPackagesMonitor(tux) {
     .json();
   packages
     .filter(x => x.commit.message.match(/add|db-.{3,6}/gi))
+    .filter(x => !x.commit.message.match(/-unstable|\[testing\]/gi))
     .forEach(sendToDiscord);
   community
     .filter(x => x.commit.message.match(/add|db-.{3,6}/gi))
+    .filter(x => !x.commit.message.match(/-unstable|\[testing\]/gi))
     .forEach(sendToDiscord);
 }
