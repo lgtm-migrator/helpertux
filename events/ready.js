@@ -45,6 +45,6 @@ export default class Ready extends BaseEvent {
     cacheTLDR(this.tux);
     setTimeout(() => checkPackages(this.tux), 10000);
     archPackagesMonitor(this.tux);
-    setInterval(() => checkRepo(this.tux), 900000);
+    setInterval(() => archPackagesMonitor(this.tux), 900000);
   }
 }
