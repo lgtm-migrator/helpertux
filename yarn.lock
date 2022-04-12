@@ -1110,10 +1110,10 @@ minimatch@^3.0.4:
   dependencies:
     brace-expansion "^1.1.7"
 
-minimist@1.2.5:
-  version "1.2.5"
-  resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.5.tgz#67d66014b66a6a8aaa0c083c5fd58df4e4e97602"
-  integrity sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==
+minimist@1.2.6:
+  version "1.2.6"
+  resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.6.tgz#8637a5b759ea0d6e98702cfb3a9283323c93af44"
+  integrity sha512-Jsjnk4bw3YJqYzbdyBiNsPWHPfO++UGG749Cxs6peCu5Xg4nrena6OVxOYxrQTqww0Jmwt+Ref8rggumkTLz9Q==
 
 minipass-collect@^1.0.2:
   version "1.0.2"
@@ -1232,27 +1232,27 @@ node-stream-zip@^1.12.0:
   resolved "https://registry.yarnpkg.com/node-stream-zip/-/node-stream-zip-1.15.0.tgz#158adb88ed8004c6c49a396b50a6a5de3bca33ea"
   integrity sha512-LN4fydt9TqhZhThkZIVQnF9cwjU3qmUH9h78Mx/K7d3VvfRqqwthLwJEUOEL0QPZ0XQmNN7be5Ggit5+4dq3Bw==
 
-node-sys@^1.1.5:
-  version "1.1.6"
-  resolved "https://registry.yarnpkg.com/node-sys/-/node-sys-1.1.6.tgz#b8577bd060d38881a626bc090c72da716dd5ee46"
-  integrity sha512-No5lL477chPC0herAWXVFS7qyWaH1WaBne5cvGedFnyOoAMPlbjyBWxpkvhvFZsb6Fm4tTPYYC7t20jXXqTeNg==
+node-sys@^1.1.7:
+  version "1.1.7"
+  resolved "https://registry.yarnpkg.com/node-sys/-/node-sys-1.1.7.tgz#2b04a3b331641a87a540c9dcc5857ba00572bb84"
+  integrity sha512-6l88xZX/vQ+A0A/cZTo+eaH2PwfbUZ2JWfel6xoNwENk7d/8+CVlAXkLFeRmuzCoLhqZS7RDq/Xn2jpPJkoexA==
   dependencies:
-    minimist "1.2.5"
+    minimist "1.2.6"
     which "^2.0.2"
 
-node-unar@1.0.7:
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/node-unar/-/node-unar-1.0.7.tgz#5156ad1b2842b282e25b699fa329aaad1dd3336e"
-  integrity sha512-zKiVobulkw16uJayttwYpVXtsMbMSKF+2CGO9OT3xPrMIqaynzZvHr03wgV27WOdiFXG2B3N9AywTioqF8i/gg==
+node-unar@1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/node-unar/-/node-unar-1.0.8.tgz#fbf5b05da2ac24278b6160f3b46231d56a73a673"
+  integrity sha512-AnEdWmV8/Dx1qMB5O2VcemoBmNzW1mhibYNl3YDUI7cVohVuobuIZwxrtRedItO05A6PiLp/HNw1ryg7M17H5g==
   dependencies:
-    node-sys "^1.1.5"
+    node-sys "^1.1.7"
     when "^3.7.8"
   optionalDependencies:
     fs-extra "^9.0.1"
     node-stream-zip "^1.12.0"
-    node-wget-fetch "^1.1.0"
+    node-wget-fetch "^1.1.2"
 
-node-wget-fetch@^1.1.0:
+node-wget-fetch@^1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/node-wget-fetch/-/node-wget-fetch-1.1.2.tgz#10eaae1fdef9d3ffb430940e947d8943dbb873f2"
   integrity sha512-rjEpPw71VujJ6AM/TwDY0TZMy3FcDggQK4nt5w9bz9dNBbafK7ifL3FHG9Ahed4an/Zv8BIb92xN1AX+Sn4abQ==
